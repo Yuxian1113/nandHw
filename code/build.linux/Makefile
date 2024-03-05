@@ -206,9 +206,9 @@ CPP_AS_FLAGS= -m32
 
 #####################################################################
 CPP=/lib/cpp
-CC = g++
-LD = g++
-AS = as
+CC = g++ -m32 -Wno-deprecated
+LD = g++ -m32 -Wno-deprecated
+AS = as --32
 RM = /bin/rm
 
 INCPATH = -I../network -I../filesys -I../userprog -I../threads -I../machine -I../lib -I-

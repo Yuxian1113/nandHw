@@ -106,14 +106,14 @@ AS = $(GCCDIR)as
 LD = $(GCCDIR)ld
 
 INCDIR =-I../userprog -I../lib
-CFLAGS = -G 0 -c $(INCDIR) -B/usr/bin/local/nachos/lib/gcc-lib/decstation-ultrix/2.95.2/ -B/usr/bin/local/nachos/decstation-ultrix/bin/
+CFLAGS = -G 0 -c $(INCDIR) -B../../usr/local/nachos/lib/gcc-lib/decstation-ultrix/2.95.2/ -B../../usr/local/nachos/decstation-ultrix/bin/
 
 ifeq ($(hosttype),unknown)
 PROGRAMS = unknownhost
 else
 # change this if you create a new test program!
-#PROGRAMS = add halt shell matmult sort segments test1 test2 a
-PROGRAMS = add halt consoleIO_test1 consoleIO_test2 fileIO_test1 fileIO_test2
+# PROGRAMS = add halt consoleIO_test1 consoleIO_test2 fileIO_test1 fileIO_test2
+PROGRAMS = fileIO_test3
 endif
 
 all: $(PROGRAMS)
@@ -182,6 +182,11 @@ fileIO_test2: fileIO_test2.o start.o
 	$(LD) $(LDFLAGS) start.o fileIO_test2.o -o fileIO_test2.coff
 	$(COFF2NOFF) fileIO_test2.coff fileIO_test2
 
+fileIO_test3.o: fileIO_test3.c
+	$(CC) $(CFLAGS) -c fileIO_test3.c
+fileIO_test3: fileIO_test3.o start.o
+	$(LD) $(LDFLAGS) start.o fileIO_test3.o -o fileIO_test3.coff
+	$(COFF2NOFF) fileIO_test3.coff fileIO_test3
 
 
 clean:
